@@ -29,6 +29,10 @@ variable "name" {
   type        = "string"
 }
 
+variable "count" {
+  default = 1
+}
+
 variable "tags" {
   description = "tags"
   type        = "map"
