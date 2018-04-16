@@ -66,7 +66,7 @@ resource "aws_api_gateway_deployment" "apigw" {
   stage_name  = "${var.stage_name}"
 }
 
-resource "aws_api_gateway_domain_name" "example" {
+resource "aws_api_gateway_domain_name" "domain" {
   count = "${var.count != 0 && var.acm_domain != "" ? 1 : 0}"
 
   domain_name     = "${var.fqdn}"
@@ -76,4 +76,11 @@ resource "aws_api_gateway_domain_name" "example" {
 data "aws_acm_certificate" "certificate" {
   count  = "${var.count != 0 && var.acm_domain != "" ? 1 : 0}"
   domain = "${var.acm_domain}"
+}
+
+resource "aws_api_gateway_base_path_mapping" "test" {
+  count       = "${var.count != 0 && var.acm_domain != "" ? 1 : 0}"
+  api_id      = "${aws_api_gateway_rest_api.apigw.id}"
+  stage_name  = "${aws_api_gateway_deployment.apigw.stage_name}"
+  domain_name = "${aws_api_gateway_domain_name.domain.domain_name}"
 }
