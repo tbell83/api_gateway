@@ -48,3 +48,8 @@ variable "acm_domain" {
   type        = "string"
   default     = ""
 }
+
+variable "fqdn" {
+  type    = "string"
+  default = ""
+}
