@@ -42,3 +42,9 @@ variable "stage_name" {
   description = "The name of the stage for the `aws_api_gateway_deployment` resource."
   type        = "string"
 }
+
+variable "acm_domain" {
+  description = "The domain of the certificate to look up. If no certificate is found with this name, an error will be returned."
+  type        = "string"
+  default     = ""
+}
