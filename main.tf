@@ -69,7 +69,7 @@ resource "aws_api_gateway_deployment" "apigw" {
 resource "aws_api_gateway_domain_name" "example" {
   count = "${var.count != 0 && var.acm_domain != "" ? 1 : 0}"
 
-  domain_name     = "${var.name}.${data.aws_acm_certificate.certificate.domain}"
+  domain_name     = "${var.name}${replace(var.origin-domain[var.environment[var.env]], "*", "")}"
   certificate_arn = "${data.aws_acm_certificate.certificate.arn}"
 }
 
