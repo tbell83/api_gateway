@@ -3,6 +3,11 @@ variable "lambda_invoke_arn" {
   type        = "string"
 }
 
+variable "policy" {
+  description = "JSON formatted policy document that controls access to the API Gateway"
+  default     = ""
+}
+
 variable "http_method" {
   description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
   type        = "string"

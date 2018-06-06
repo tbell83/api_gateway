@@ -1,7 +1,8 @@
 resource "aws_api_gateway_rest_api" "apigw" {
   count = "${var.count}"
 
-  name = "${var.name}"
+  name   = "${var.name}"
+  policy = "${var.policy}"
 }
 
 resource "aws_api_gateway_resource" "proxy" {
