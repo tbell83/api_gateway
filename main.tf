@@ -75,8 +75,9 @@ resource "aws_api_gateway_domain_name" "domain" {
 }
 
 data "aws_acm_certificate" "certificate" {
-  count  = "${var.count != 0 && var.acm_domain != "" ? 1 : 0}"
-  domain = "${var.acm_domain}"
+  count       = "${var.count != 0 && var.acm_domain != "" ? 1 : 0}"
+  domain      = "${var.acm_domain}"
+  most_recent = true
 }
 
 resource "aws_api_gateway_base_path_mapping" "test" {
