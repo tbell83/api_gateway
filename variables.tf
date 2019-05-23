@@ -34,7 +34,7 @@ variable "name" {
   type        = "string"
 }
 
-variable "mod_mod_count" {
+variable "mod_count" {
   default = 1
 }
 
