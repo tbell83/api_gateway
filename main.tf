@@ -75,13 +75,13 @@ resource "aws_api_gateway_domain_name" "domain" {
 }
 
 data "aws_acm_certificate" "certificate" {
-  mod_count   = "${var.mod_count != 0 && var.acm_domain != "" ? 1 : 0}"
+  count       = "${var.mod_count != 0 && var.acm_domain != "" ? 1 : 0}"
   domain      = "${var.acm_domain}"
   most_recent = true
 }
 
 resource "aws_api_gateway_base_path_mapping" "test" {
-  mod_count   = "${var.mod_count != 0 && var.acm_domain != "" ? 1 : 0}"
+  count       = "${var.mod_count != 0 && var.acm_domain != "" ? 1 : 0}"
   api_id      = "${aws_api_gateway_rest_api.apigw.id}"
   stage_name  = "${aws_api_gateway_deployment.apigw.stage_name}"
   domain_name = "${aws_api_gateway_domain_name.domain.domain_name}"
