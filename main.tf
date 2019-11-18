@@ -59,8 +59,8 @@ resource "aws_api_gateway_deployment" "apigw" {
   count = var.mod_count
 
   depends_on = [
-    "aws_api_gateway_integration.lambda",
-    "aws_api_gateway_integration.lambda_root",
+    aws_api_gateway_integration.lambda,
+    aws_api_gateway_integration.lambda_root,
   ]
 
   rest_api_id = join("", aws_api_gateway_rest_api.apigw.*.id)
